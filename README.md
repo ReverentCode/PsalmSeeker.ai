@@ -42,7 +42,7 @@ No cloud APIs. No data leaves your machine.
 
 ## 🖼️ Preview
 
-![PsalmSeeker interface](assets/demo/screenshot.png)
+![PsalmSeeker interface](assets/demo/PsalmSeeker_Main.png)
 
 ## 🚀 Setup & Run
 
