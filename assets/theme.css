@@ -1,0 +1,314 @@
+/* assets/theme.css
+   PsalmSeeker — Royal Davidic theme (with scrollable Courts pane)
+*/
+
+:root{
+  --bg-0: #07060b;         /* deep sanctuary */
+  --bg-1: #0c0a14;         /* inner court */
+  --panel: rgba(255,255,255,0.04);
+  --panel-strong: rgba(255,255,255,0.07);
+
+  --gold: #d8b35a;         /* royal gold */
+  --gold-2:#f2d68a;
+  --crimson:#7b1531;       /* davidic crimson */
+  --purple:#3b1b5a;        /* royal purple */
+  --ink: #ece7ff;          /* soft parchment */
+  --muted:#b8b0c9;
+
+  --line: rgba(216,179,90,0.22);
+  --glow: 0 0 24px rgba(216,179,90,0.22);
+}
+
+html, body{
+  height: 100%;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(59,27,90,0.35), transparent 60%),
+    radial-gradient(800px 500px at 80% 30%, rgba(123,21,49,0.25), transparent 65%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1));
+  color: var(--ink);
+}
+
+a{ color: var(--gold-2); }
+
+/* -------------------------
+   Header / Navbar
+-------------------------- */
+
+/* Force the <nav> background (Bootstrap can override) */
+nav.ps-header,
+.ps-header.navbar,
+.ps-header.navbar-expand,
+.ps-header.navbar-expand-lg{
+  background: linear-gradient(
+    90deg,
+    rgba(216,179,90,0.12),
+    rgba(123,21,49,0.10),
+    rgba(59,27,90,0.12)
+  ) !important;
+
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--line) !important;
+  box-shadow: var(--glow) !important;
+}
+
+/* Ensure inner container doesn't paint white */
+.ps-header .container,
+.ps-header .container-fluid{
+  background: transparent !important;
+}
+
+/* Make Bootstrap's dark navbar stop forcing white text */
+.ps-header,
+.ps-header .navbar-brand,
+.ps-header .navbar-text,
+.ps-header .nav-link{
+  color: var(--ink) !important;
+}
+
+.ps-title{
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  background: linear-gradient(90deg, var(--gold-2), var(--gold), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ps-subtitle{
+  color: var(--muted) !important;
+  font-size: 0.95rem;
+}
+
+/* Step indicators (Gates / Courts / Holy of Holies) */
+.ps-step{
+  font-size: 0.85rem;
+  color: var(--gold-2);
+  border: 1px solid rgba(216,179,90,0.25);
+  background: rgba(216,179,90,0.06);
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* -------------------------
+   Courts results scroll pane
+   (Apply className="ps-scroll-pane" to the results container)
+-------------------------- */
+
+.ps-scroll-pane{
+  max-height: calc(100vh - 260px); /* tweak as desired */
+  overflow-y: auto;
+  padding-right: 8px; /* space for scrollbar */
+}
+
+/* Nicer scrollbar (Chrome/Edge/Safari) */
+.ps-scroll-pane::-webkit-scrollbar{
+  width: 10px;
+}
+.ps-scroll-pane::-webkit-scrollbar-thumb{
+  background: rgba(216,179,90,0.20);
+  border: 1px solid rgba(216,179,90,0.25);
+  border-radius: 999px;
+}
+.ps-scroll-pane::-webkit-scrollbar-track{
+  background: rgba(0,0,0,0.15);
+  border-radius: 999px;
+}
+
+/* Firefox scrollbar */
+.ps-scroll-pane{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(216,179,90,0.35) rgba(0,0,0,0.15);
+}
+
+/* -------------------------
+   Cards / Typography
+-------------------------- */
+
+.ps-card{
+  background: var(--panel);
+  border: 1px solid rgba(216,179,90,0.18);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Ensure text remains readable inside translucent cards */
+.ps-card,
+.ps-card *{
+  color: var(--ink);
+}
+
+/* Stronger inset card used for reflection / selected psalm panel */
+.ps-card-strong{
+  background: var(--panel-strong);
+  border: 1px solid rgba(216,179,90,0.28);
+}
+
+/* Titles inside result cards (you add className="ps-result-title") */
+.ps-result-title{
+  color: var(--gold-2);
+}
+
+/* Keep .ps-small muted even inside card-wide text rule above */
+.ps-small{
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Labels */
+.ps-label{
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
+
+/* Verse rendering */
+.ps-verse{
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 1.02rem;
+}
+
+.ps-divider{
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216,179,90,0.35), transparent);
+  margin: 14px 0;
+}
+
+.ps-pill{
+  display: inline-flex;      /* shrink to content */
+  align-items: center;
+  width: fit-content;        /* explicit: do not stretch */
+  max-width: max-content;    /* safety for flex/grid parents */
+
+  border: 1px solid rgba(216,179,90,0.22);
+  border-radius: 999px;
+  padding: 4px 12px;
+
+  color: var(--gold-2);
+  background: rgba(216,179,90,0.06);
+}
+
+/* -------------------------
+   Inputs / Buttons
+-------------------------- */
+
+.ps-input,
+.ps-textarea,
+.ps-dropdown{
+  background: rgba(0,0,0,0.25) !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(216,179,90,0.22) !important;
+  border-radius: 14px !important;
+}
+
+.ps-input:focus,
+.ps-textarea:focus{
+  box-shadow: 0 0 0 0.2rem rgba(216,179,90,0.15) !important;
+  border-color: rgba(242,214,138,0.55) !important;
+}
+
+.btn-royal{
+  border-radius: 14px !important;
+  border: 1px solid rgba(216,179,90,0.35) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(216,179,90,0.20),
+    rgba(123,21,49,0.18),
+    rgba(59,27,90,0.22)
+  ) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--glow);
+}
+
+.btn-royal:hover{
+  border-color: rgba(242,214,138,0.65) !important;
+  transform: translateY(-1px);
+}
+
+/* -------------------------
+   Sexy in-theme spinners
+-------------------------- */
+
+/* dbc.Spinner uses Bootstrap's .spinner-border under the hood */
+.ps-spinner.spinner-border,
+.ps-spinner.spinner-grow{
+  border-width: 0.22em !important;
+  border-right-color: rgba(216,179,90,0.20) !important;
+  border-bottom-color: rgba(216,179,90,0.20) !important;
+  border-left-color: rgba(216,179,90,0.20) !important;
+  border-top-color: var(--gold-2) !important;
+
+  filter: drop-shadow(0 0 10px rgba(216,179,90,0.35));
+  animation: ps-spin 0.85s linear infinite, ps-pulse 1.6s ease-in-out infinite;
+}
+
+/* Add a subtle “breathing” glow */
+@keyframes ps-pulse{
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(216,179,90,0.22)); opacity: 0.92; }
+  50%      { filter: drop-shadow(0 0 18px rgba(216,179,90,0.42)); opacity: 1; }
+}
+
+/* Keep the spin smooth */
+@keyframes ps-spin{
+  to { transform: rotate(360deg); }
+}
+
+/* assets/theme.css (append these blocks) */
+
+/* Inline spinner anchored inside action (Knock) area */
+.ps-action-wrap{
+  position: relative;
+}
+
+.ps-inline-spinner{
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* dcc.Loading styling (keeps loaders on-theme) */
+.ps-loading .dash-loading{
+  filter: drop-shadow(0 0 14px rgba(216,179,90,0.40));
+}
+
+/* Progress icons */
+.ps-step-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: var(--glow);
+  display: inline-block;
+}
+
+/* When completed: green checkmark */
+.ps-step-check{
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+
+  color: #0ee38a; /* vivid green */
+  border: 1px solid rgba(14,227,138,0.35);
+  background: rgba(14,227,138,0.10);
+  box-shadow: 0 0 18px rgba(14,227,138,0.18);
+
+  font-weight: 900;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* Holy-of-holies spinners: centered, in-panel, not page-dominating */
+.ps-panel-spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px 0 10px 0;
+  pointer-events: none;
+}
